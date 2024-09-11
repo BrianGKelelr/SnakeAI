@@ -8,6 +8,7 @@ void Game::gameStart() {	//used to start game
 	fruitx = rand() % width;	//randomly places fruit
 	fruity = rand() % height;
 	score = 0;		//resets score
+	snakeTailLength = 0;	//sets snake length to 0
 };
 
 std::string Game::boardRender() {
@@ -15,45 +16,43 @@ std::string Game::boardRender() {
 	std::string output;
 
 	for (int i = 0; i < width + 2; i++) {	//sets up top wall using "-" character
-		cout << "-";
+		output += "-";
 	}
-	cout<< "\n";
+	output += "\n";
 
 	for (int i = 0; i < height; i++) {		//goes through game board one row at a time to print everything
 		for (int j = 0; j <= width; j++) {	//sets up side walls with "|" character
 			if (j == 0 || j == width) {
-				cout<< "|";
+				output += "|";
 			}
-
 			if (i == heady && j == headx) {		//if current printing coordinate equals coordinates of snake head, print snake head
-				cout<< "O";
+				output += "O";
 			}
 			else if (i == fruity && j == fruitx) {	//prints fruit (money) if coordinates equal coordinates of fruit
-				cout<< "$";
+				output += "$";
 			}
 			else {	//snake body
 				bool prTail = false;
 				for (int k = 0; k < snakeTailLength; k++) {
 					if (snakeTailx[k] == j && snakeTaily[k] == i) {
-						cout<< "o";
+						output += "o";
 						prTail = true;	//sets prTail to true to avoid infinite loop
 					}
 				}
 				if (!prTail) {		//prints empty space if not a wall, fruit, or snake
-					cout<< " ";
+					output += " ";
 				}
 			}
-			cout<< "\n";
 		}
+		output += "\n";
 	}
 	for (int i = 0; i < width + 2; i++) {	//sets up bottom wall using "-" character
-		cout<< "-";
+		output += "-";
 	}
-	cout<< "\n";
+	output += "\n";
 
-	cout<< + "Score: " + to_string(score) + "/n";	//prints score
-
-	return output;	//returns what everything should look like
+	output = output + "Score: " + to_string(score) + "\n";	//prints score
+	return output;
 };
 
 void Game::updateGame() {
@@ -101,7 +100,7 @@ void Game::updateGame() {
 		score++;
 		fruitx = rand() % width;
 		fruity = rand() % height;
-		snakeTailLength++;
+		snakeTailLength += 5;
 	}
 };
 
@@ -117,7 +116,7 @@ void Game::input() {
 		case 'w':
 			sDir = Up;
 			break;
-		case 'S':
+		case 's':
 			sDir = Down;
 			break;
 		case 'x':				//if x is pressed, ends game

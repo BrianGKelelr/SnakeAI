@@ -8,7 +8,7 @@ int main() {
 		std::cout << snake.boardRender();
 		snake.input();
 		snake.updateGame();
-		Sleep(100);		//delay, set higher for less delay and lower for more delay
+		Sleep(50);		//delay, set higher for less delay and lower for more delay
 	}
 	return 0;
 }
