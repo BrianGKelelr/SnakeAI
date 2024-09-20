@@ -132,9 +132,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AI.hpp" />
     <ClInclude Include="game.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AITest.cpp" />
     <ClCompile Include="game.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
