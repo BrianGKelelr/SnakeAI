@@ -1,6 +1,7 @@
 #include "game.hpp"
 
 void Game::gameStart() {	//used to start game
+	srand (time(0));
 	isGameOver = false;
 	sDir = STOP;			//stops player movement
 	headx = width / 2;		//puts snake in middle of game board
