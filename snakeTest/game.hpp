@@ -1,7 +1,9 @@
+#pragma once
 #include <iostream>
 #include <windows.h>
 #include <conio.h>
 #include <string>
+#include <time.h>
 using namespace std;
 
 class Game {
