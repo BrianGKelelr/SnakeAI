@@ -1,6 +1,6 @@
 #include "game.hpp"
 
-  int main() {
+int main() {
 	Game snake;
 
 	snake.gameStart();
