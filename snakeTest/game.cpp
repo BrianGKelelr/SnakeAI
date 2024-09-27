@@ -10,6 +10,7 @@ void Game::gameStart() {	//used to start game
 	fruity = rand() % height;
 	score = 0;		//resets score
 	snakeTailLength = 0;	//sets snake length to 0
+	getApplePos();
 };
 
 std::string Game::boardRender() {
@@ -30,7 +31,7 @@ std::string Game::boardRender() {
 				output += "O";
 			}
 			else if (i == fruity && j == fruitx) {	//prints fruit (money) if coordinates equal coordinates of fruit
-				output += "??";
+				output += "$";
 			}
 			else {	//snake body
 				bool prTail = false;
@@ -133,70 +134,131 @@ void Game::getApplePos() {
 	switch (sDir) {		//gets input from sDir
 	case Left:
 		if (x > 0 && y > 0) {
-			appleRight = false;
-			appleAhead = false;
-		}
-		if (x > 0 && y < 0) {
-			appleRight = false;
-			appleAhead = true;
-		}
-		if (x < 0 && y > 0) {
 			appleRight = true;
 			appleAhead = true;
+			appleLeft = false;
 		}
-		if (x < 0 && y < 0) {
+		else if (x > 0 && y < 0) {
+			appleRight = false;
+			appleAhead = true;
+			appleLeft = true;
+		}
+		else if (x <= 0 && y > 0) {
 			appleRight = true;
 			appleAhead = false;
+			appleLeft = false;
+		}
+		else if (x <= 0 && y < 0) {
+			appleRight = false;
+			appleAhead = false;
+			appleLeft = true;
+		}
+		else if (x > 0 && y == 0) {
+			appleRight = false;
+			appleAhead = true;
+			appleLeft = false;
+		}
+		else if (x < 0 && y == 0) {
+			appleRight = false;
+			appleAhead = false;
+			appleLeft = false;
 		}
 		break;
 	case Right:
-		if (x > 0 && y > 0) {
+		if (x >= 0 && y > 0) {
 			appleRight = false;
 			appleAhead = false;
+			appleLeft = true;
 		}
-		if (x > 0 && y < 0) {
+		else if (x >= 0 && y < 0) {
 			appleRight = true;
 			appleAhead = false;
+			appleLeft = false;
 		}
-		if (x < 0 && y > 0) {
+		else if (x < 0 && y > 0) {
 			appleAhead = true;
 			appleRight = false;
+			appleLeft = true;
 		}
-		if (x < 0 && y < 0) {
+		else if (x < 0 && y < 0) {
 			appleRight = true;
 			appleAhead = true;
+			appleLeft = false;
+		}
+		else if (x < 0 && y == 0) {
+			appleRight = false;
+			appleAhead = true;
+			appleLeft = false;
+		}
+		else if (x > 0 && y == 0) {
+			appleRight = false;
+			appleAhead = false;
+			appleLeft = false;
 		}
 		break;
 	case Up:
 		if (x > 0 && y > 0) {
 			appleRight = false;
-			appleAhead = false;
+			appleAhead = true;
+			appleLeft = true;
 		}
-		if (x > 0 && y < 0) {
+		else if (x > 0 && y <= 0) {
+			appleRight = false;
+			appleAhead = false;
+			appleLeft = true;
+		}
+		else if (x < 0 && y > 0) {
+			appleRight = true;
+			appleAhead = true;
+			appleLeft = false;
+		}
+		else if (x < 0 && y <= 0) {
+			appleRight = true;
+			appleAhead = false;
+			appleLeft = false;
+		}
+		else if (x == 0 && y > 0) {
 			appleRight = false;
 			appleAhead = true;
+			appleLeft = false;
 		}
-		if (x < 0 && y > 0) {
-			appleRight = true;
-			appleAhead = true;
-		}
-		if (x < 0 && y < 0) {
-			appleRight = true;
+		else if (x == 0 && y < 0) {
+			appleRight = false;
 			appleAhead = false;
+			appleLeft = false;
 		}
 		break;
 	case Down:
-		heady++;
+		if (x > 0 && y >= 0) {
+			appleRight = true;
+			appleAhead = false;
+			appleLeft = false;
+		}
+		else if (x > 0 && y < 0) {
+			appleRight = true;
+			appleAhead = true;
+			appleLeft = false;
+		}
+		else if (x < 0 && y >= 0) {
+			appleRight = false;
+			appleAhead = false;
+			appleLeft = true;
+		}
+		else if (x < 0 && y < 0) {
+			appleRight = false;
+			appleAhead = true;
+			appleLeft = true;
+		}
+		else if (x == 0 && y > 0) {
+			appleRight = false;
+			appleAhead = false;
+			appleLeft = false;
+		}
+		else if (x == 0 && y < 0) {
+			appleRight = false;
+			appleAhead = true;
+			appleLeft = false;
+		}
 		break;
 	}
-
-	/*
-	* if(x > 0 && y > 0)
-	* if(x > 0 && y < 0)
-	* if(x < 0 && y > 0)
-	* if(x < 0 && y < 0)
-	* 
-	* if y > 0 the apple is above the snake
-	* if x > 0 the apple is left of snake
-	*/
 };

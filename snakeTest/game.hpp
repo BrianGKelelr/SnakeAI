@@ -10,6 +10,7 @@ class Game {
 private:
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 		bool appleRight = false;	//paramaters to pass into ai, indicates which direction the snake needs to turn, not actual position relative to snake
+		bool appleLeft = false;
 		bool appleAhead = false;
 		bool dangerRight = false;	//only test for danger in squares adjacent to snake head
 		bool dangerLeft = false;
