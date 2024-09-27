@@ -15,6 +15,8 @@ private:
 		bool dangerRight = false;	//only test for danger in squares adjacent to snake head
 		bool dangerLeft = false;
 		bool dangerAhead = false;
+
+		bool gameUpdated = false;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	const int width = 80;	//do not change for now
 	const int height = 20;
@@ -38,4 +40,6 @@ public:
 	bool isGameOver;	//checks if game is over
 
 	void getApplePos();	//gets position of apple relative to snake head
+	void getWallPos(); //gets position of wall relative to snake head
+	void resetvars();	//resets all vars to false
 };
