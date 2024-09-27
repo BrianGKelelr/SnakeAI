@@ -125,6 +125,7 @@ void Game::input() {
 			break;
 		}
 	}
+	gameUpdated = true;
 };
 
 void Game::getApplePos() {
@@ -199,4 +200,82 @@ void Game::getApplePos() {
 	* if y > 0 the apple is above the snake
 	* if x > 0 the apple is left of snake
 	*/
+};
+
+void Game::getWallPos() {
+	int posX, posY;
+	int negX, negY;
+
+	posX = headx++;
+	posY = heady++;
+	negX = headx--;
+	negY = heady--;
+
+	if (gameUpdated == true){
+		dangerAhead = false;
+		dangerRight = false;
+		dangerLeft = false;
+		gameUpdated = false;
+	}
+
+	switch (sDir) {		//gets input from sDir
+	case Left:
+		if (posX >= width) {
+		}
+		if (posX <= 0) {
+			dangerAhead = true;
+		}
+		if (posY >= height) {
+			dangerRight = true;
+		}
+		if (negY <= 0) {
+			dangerLeft = true;
+		}
+		break;
+	case Right:
+		if (posX >= width) {
+			dangerAhead = true;
+		}
+		if (posX <= 0) {
+		}
+		if (posY >= height) {
+			dangerLeft = true;
+		}
+		if (negY <= 0) {
+			dangerRight = true;
+		}
+		break;
+	case Up:
+		if (posX >= width) {
+			dangerRight = true;
+		}
+		if (posX <= 0) {
+			dangerLeft = true;
+		}
+		if (posY >= height) {
+			dangerAhead = true;
+		}
+		if (negY <= 0) {
+		}
+		break;
+	case Down:
+		if (posX >= width) {
+			dangerLeft = true;
+		}
+		if (posX <= 0) {
+			dangerRight = true;
+		}
+		if (posY >= height) {
+		}
+		if (negY <= 0) {
+			dangerAhead = true;
+		}
+		break;
+	default:
+		dangerAhead = false;
+		dangerRight = false;
+		dangerLeft = false;
+
+		break;
+	}
 };

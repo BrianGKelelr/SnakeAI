@@ -35,6 +35,8 @@ public:
 	void input();
 
 	bool isGameOver;	//checks if game is over
+	bool gameUpdated = false;
 
 	void getApplePos();	//gets position of apple relative to snake head
+	void getWallPos(); //gets position of wall relative to snake head
 };
