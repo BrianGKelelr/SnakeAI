@@ -30,7 +30,7 @@ std::string Game::boardRender() {
 				output += "O";
 			}
 			else if (i == fruity && j == fruitx) {	//prints fruit (money) if coordinates equal coordinates of fruit
-				output += "$";
+				output += "??";
 			}
 			else {	//snake body
 				bool prTail = false;
