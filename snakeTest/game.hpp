@@ -8,6 +8,13 @@ using namespace std;
 
 class Game {
 private:
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		bool appleRight = false;	//paramaters to pass into ai, indicates which direction the snake needs to turn, not actual position relative to snake
+		bool appleAhead = false;
+		bool dangerRight = false;	//only test for danger in squares adjacent to snake head
+		bool dangerLeft = false;
+		bool dangerAhead = false;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	const int width = 80;	//do not change for now
 	const int height = 20;
 
@@ -28,4 +35,6 @@ public:
 	void input();
 
 	bool isGameOver;	//checks if game is over
+
+	void getApplePos();	//gets position of apple relative to snake head
 };

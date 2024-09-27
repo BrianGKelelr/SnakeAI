@@ -126,3 +126,77 @@ void Game::input() {
 		}
 	}
 };
+
+void Game::getApplePos() {
+	int x = headx - fruitx;
+	int y = heady - fruity;
+	switch (sDir) {		//gets input from sDir
+	case Left:
+		if (x > 0 && y > 0) {
+			appleRight = false;
+			appleAhead = false;
+		}
+		if (x > 0 && y < 0) {
+			appleRight = false;
+			appleAhead = true;
+		}
+		if (x < 0 && y > 0) {
+			appleRight = true;
+			appleAhead = true;
+		}
+		if (x < 0 && y < 0) {
+			appleRight = true;
+			appleAhead = false;
+		}
+		break;
+	case Right:
+		if (x > 0 && y > 0) {
+			appleRight = false;
+			appleAhead = false;
+		}
+		if (x > 0 && y < 0) {
+			appleRight = true;
+			appleAhead = false;
+		}
+		if (x < 0 && y > 0) {
+			appleAhead = true;
+			appleRight = false;
+		}
+		if (x < 0 && y < 0) {
+			appleRight = true;
+			appleAhead = true;
+		}
+		break;
+	case Up:
+		if (x > 0 && y > 0) {
+			appleRight = false;
+			appleAhead = false;
+		}
+		if (x > 0 && y < 0) {
+			appleRight = false;
+			appleAhead = true;
+		}
+		if (x < 0 && y > 0) {
+			appleRight = true;
+			appleAhead = true;
+		}
+		if (x < 0 && y < 0) {
+			appleRight = true;
+			appleAhead = false;
+		}
+		break;
+	case Down:
+		heady++;
+		break;
+	}
+
+	/*
+	* if(x > 0 && y > 0)
+	* if(x > 0 && y < 0)
+	* if(x < 0 && y > 0)
+	* if(x < 0 && y < 0)
+	* 
+	* if y > 0 the apple is above the snake
+	* if x > 0 the apple is left of snake
+	*/
+};
