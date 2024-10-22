@@ -58,6 +58,7 @@ std::string Game::boardRender() {
 };
 
 void Game::updateGame() {
+	AImoveSnake();	//uses our algorithm to move the snake
 	int prevx = snakeTailx[0];
 	int prevy = snakeTaily[0];
 	int prev2x, prev2y;
@@ -104,6 +105,7 @@ void Game::updateGame() {
 		fruity = rand() % height;
 		snakeTailLength += 5;
 	}
+	//std::cout << " Right: " << appleRight << "\nLeft: " << appleLeft << "\nAhead: " << appleAhead;	//used to make sure the left, right, and ahead apple positions are working
 };
 
 void Game::input() {
@@ -342,3 +344,56 @@ void Game::resetvars() {
 		dangerAhead = false;
 	}
 }
+
+void Game::AImoveSnake() {
+	switch (sDir) {
+	case Left:{
+		if (appleLeft == true) {
+			sDir = Down;
+		}
+		else if (appleRight == true) {
+			sDir = Up;
+		}
+		else if (appleRight == false && appleLeft == false && appleAhead == false) {
+			sDir = Up;
+		}
+		break;
+	}
+	case Right: {
+		if (appleLeft == true) {
+			sDir = Up;
+		}
+		else if (appleRight == true) {
+			sDir = Down;
+		}
+		else if (appleRight == false && appleLeft == false && appleAhead == false) {
+			sDir = Down;
+		}
+		break;
+	}
+	case Up: {
+		if (appleLeft == true) {
+			sDir = Left;
+		}
+		else if (appleRight == true) {
+			sDir = Right;
+		}
+		else if (appleRight == false && appleLeft == false && appleAhead == false) {
+			sDir = Right;
+		}
+		break;
+	}
+	case Down: {
+		if (appleLeft == true) {
+			sDir = Right;
+		}
+		else if (appleRight == true) {
+			sDir = Left;
+		}
+		else if (appleRight == false && appleLeft == false && appleAhead == false) {
+			sDir = Left;
+		}
+		break;
+	}
+	}
+};

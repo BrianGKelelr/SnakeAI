@@ -42,4 +42,6 @@ public:
 	void getApplePos();	//gets position of apple relative to snake head
 	void getWallPos(); //gets position of wall relative to snake head
 	void resetvars();	//resets all vars to false
+
+	void AImoveSnake();	//Moves snake using an algorithm
 };
