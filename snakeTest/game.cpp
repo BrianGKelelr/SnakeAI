@@ -277,7 +277,7 @@ void Game::getWallPos() {
 	case Left:
 		if (posX >= width) {
 		}
-		if (posX <= 0) {
+		if (negX <= 0) {
 			dangerAhead = true;
 		}
 		if (posY >= height) {
@@ -286,9 +286,24 @@ void Game::getWallPos() {
 		if (negY <= 0) {
 			dangerLeft = true;
 		}
+
+		for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
+			if (snakeTailx[i] == negX) {
+				dangerAhead = true;
+			}
+			if (snakeTailx[i] == posX) {
+			}
+			if (snakeTailx[i] == posY) {
+				dangerRight = true;
+			}
+			if (snakeTailx[i] == negY) {
+				dangerLeft = true;
+			}
+		}
+
 		break;
 	case Right:
-		if (posX >= width) {
+		if (negX >= width) {
 			dangerAhead = true;
 		}
 		if (posX <= 0) {
@@ -299,9 +314,24 @@ void Game::getWallPos() {
 		if (negY <= 0) {
 			dangerRight = true;
 		}
+
+		for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
+			if (snakeTailx[i] == negX) {
+				dangerAhead = true;
+			}
+			if (snakeTailx[i] == posX) {
+			}
+			if (snakeTailx[i] == posY) {
+				dangerLeft = true;
+			}
+			if (snakeTailx[i] == negY) {
+				dangerRight = true;
+			}
+		}
+
 		break;
 	case Up:
-		if (posX >= width) {
+		if (negX >= width) {
 			dangerRight = true;
 		}
 		if (posX <= 0) {
@@ -312,9 +342,24 @@ void Game::getWallPos() {
 		}
 		if (negY <= 0) {
 		}
+
+		for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
+			if (snakeTailx[i] == negX) {
+				dangerRight = true;
+			}
+			if (snakeTailx[i] == posX) {
+				dangerLeft = true;
+			}
+			if (snakeTailx[i] == posY) {
+				dangerAhead == true;
+			}
+			if (snakeTailx[i] == negY) {
+			}
+		}
+
 		break;
 	case Down:
-		if (posX >= width) {
+		if (negX >= width) {
 			dangerLeft = true;
 		}
 		if (posX <= 0) {
@@ -325,6 +370,21 @@ void Game::getWallPos() {
 		if (negY <= 0) {
 			dangerAhead = true;
 		}
+
+		for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
+			if (snakeTailx[i] == negX) {
+				dangerLeft = true;
+			}
+			if (snakeTailx[i] == posX) {
+				dangerRight = true;
+			}
+			if (snakeTailx[i] == posY) {
+			}
+			if (snakeTailx[i] == negY) {
+				dangerAhead = true;
+			}
+		}
+
 		break;
 	default:
 		dangerAhead = false;
