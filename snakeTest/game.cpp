@@ -114,7 +114,7 @@ void Game::updateGame() {
 				i = snakeTailLength;
 			}
 		}
-		snakeTailLength += 10;
+		snakeTailLength += 1;
 	}
 	//std::cout << " Right: " << appleRight << "\nLeft: " << appleLeft << "\nAhead: " << appleAhead;	//used to make sure the left, right, and ahead apple positions are working
 	//std::cout << "DangerRight: " << dangerRight << "\nDangerLeft: " << dangerLeft << "\ndangerAhead: " << dangerAhead;
@@ -302,7 +302,7 @@ void Game::getWallPos() {
 		if (headx-1 == -1) {
 			dangerAhead = true;
 		}
-		if (heady-1 == 0) {
+		if (heady-1 == -1) {
 			dangerRight = true;
 		}
 		if (heady+1 == height) {
@@ -325,10 +325,10 @@ void Game::getWallPos() {
 			dangerAhead = true;
 		}
 		if (heady-1 == -1) {
-			dangerRight = true;
+			dangerLeft = true;
 		}
 		if (heady+1 == height) {
-			dangerLeft = true;
+			dangerRight= true;
 		}
 		break;
 	case Up:

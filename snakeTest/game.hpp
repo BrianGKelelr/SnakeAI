@@ -18,8 +18,8 @@ private:
 
 		bool gameUpdated = false;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	const int width = 80;	//do not change for now
-	const int height = 20;
+	const int width = 100;	//do not change for now
+	const int height = 40;
 
 	int headx, heady;	//coordinates for head of snake
 	int fruitx, fruity;		//coordinates for fruit coordinates
