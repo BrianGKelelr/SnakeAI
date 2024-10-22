@@ -58,6 +58,7 @@ std::string Game::boardRender() {
 };
 
 void Game::updateGame() {
+	getWallPos();
 	AImoveSnake();	//uses our algorithm to move the snake
 	int prevx = snakeTailx[0];
 	int prevy = snakeTaily[0];
@@ -103,9 +104,10 @@ void Game::updateGame() {
 		score++;
 		fruitx = rand() % width;
 		fruity = rand() % height;
-		snakeTailLength += 5;
+		snakeTailLength += 10;
 	}
 	//std::cout << " Right: " << appleRight << "\nLeft: " << appleLeft << "\nAhead: " << appleAhead;	//used to make sure the left, right, and ahead apple positions are working
+	//std::cout << "DangerRight: " << dangerRight << "\nDangerLeft: " << dangerLeft << "\ndangerAhead: " << dangerAhead;
 };
 
 void Game::input() {
@@ -266,73 +268,61 @@ void Game::getApplePos() {
 };
 
 void Game::getWallPos() {
-	int posX, posY;
-	int negX, negY;
-
-	posX = headx++;
-	posY = heady++;
-	negX = headx--;
-	negY = heady--;
-
-
+	dangerRight = false;
+	dangerLeft = false;
+	dangerAhead = false;
 	switch (sDir) {		//gets input from sDir
 	case Left:
-		if (posX >= width) {
-		}
-		if (posX <= 0) {
-			dangerAhead = true;
-		}
-		if (posY >= height) {
-			dangerRight = true;
-		}
-		if (negY <= 0) {
-			dangerLeft = true;
+		for (int i = 0; i < snakeTailLength; i++) {		
+			if (snakeTailx[i] == headx && snakeTaily[i] == heady-1) {
+				dangerRight = true;
+			}
+			if (snakeTailx[i] == headx && snakeTaily[i] == heady + 1) {
+				dangerLeft = true;
+			}
+			if (snakeTailx[i] == headx && snakeTaily[i] == headx - 1) {
+				dangerAhead = true;
+			}
 		}
 		break;
 	case Right:
-		if (posX >= width) {
-			dangerAhead = true;
-		}
-		if (posX <= 0) {
-		}
-		if (posY >= height) {
-			dangerLeft = true;
-		}
-		if (negY <= 0) {
-			dangerRight = true;
+		for (int i = 0; i < snakeTailLength; i++) {
+			if (snakeTailx[i] == headx && snakeTaily[i] == heady - 1) {
+				dangerLeft = true;
+			}
+			if (snakeTailx[i] == headx && snakeTaily[i] == heady + 1) {
+				dangerRight = true;
+			}
+			if (snakeTailx[i] == headx && snakeTaily[i] == headx + 1) {
+				dangerAhead = true;
+			}
 		}
 		break;
 	case Up:
-		if (posX >= width) {
-			dangerRight = true;
-		}
-		if (posX <= 0) {
-			dangerLeft = true;
-		}
-		if (posY >= height) {
-			dangerAhead = true;
-		}
-		if (negY <= 0) {
+		for (int i = 0; i < snakeTailLength; i++) {
+			if (snakeTailx[i] == headx && snakeTaily[i] == heady - 1) {
+				dangerAhead = true;
+			}
+			if (snakeTailx[i] == headx && snakeTaily[i] == headx + 1) {
+				dangerRight = true;
+			}
+			if (snakeTailx[i] == headx && snakeTaily[i] == headx - 1) {
+				dangerLeft = true;
+			}
 		}
 		break;
 	case Down:
-		if (posX >= width) {
-			dangerLeft = true;
+		for (int i = 0; i < snakeTailLength; i++) {
+			if (snakeTailx[i] == headx && snakeTaily[i] == headx - 1) {
+				dangerRight = true;
+			}
+			if (snakeTailx[i] == headx && snakeTaily[i] == headx + 1) {
+				dangerLeft = true;
+			}
+			if (snakeTailx[i] == headx && snakeTaily[i] == heady + 1) {
+				dangerAhead = true;
+			}
 		}
-		if (posX <= 0) {
-			dangerRight = true;
-		}
-		if (posY >= height) {
-		}
-		if (negY <= 0) {
-			dangerAhead = true;
-		}
-		break;
-	default:
-		dangerAhead = false;
-		dangerRight = false;
-		dangerLeft = false;
-
 		break;
 	}
 };
@@ -346,15 +336,6 @@ void Game::resetvars() {
 }
 
 void Game::AImoveSnake() {	//need to check for danger ahead still, do that first in this function
-	if (dangerAhead) {
-		if (dangerLeft) {
-			sDir = Right;
-		}
-		else if (dangerRight) {
-			sDir = Left;
-		}
-	}
-	
 	switch (sDir) {
 	case Left:{
 		if (appleLeft) {
