@@ -345,53 +345,166 @@ void Game::resetvars() {
 	}
 }
 
-void Game::AImoveSnake() {
+void Game::AImoveSnake() {	//need to check for danger ahead still, do that first in this function
+	if (dangerAhead) {
+		if (dangerLeft) {
+			sDir = Right;
+		}
+		else if (dangerRight) {
+			sDir = Left;
+		}
+	}
+	
 	switch (sDir) {
 	case Left:{
-		if (appleLeft == true) {
-			sDir = Down;
+		if (appleLeft) {
+			if (dangerLeft) {
+				;
+			}
+			else {
+				sDir = Down;
+			}
 		}
-		else if (appleRight == true) {
-			sDir = Up;
+		else if (appleRight) {
+			if (dangerRight) {
+				;
+			}
+			else {
+				sDir = Up;
+			}
 		}
-		else if (appleRight == false && appleLeft == false && appleAhead == false) {
-			sDir = Up;
+		else if (!appleRight && !appleLeft && !appleAhead) {
+			if (dangerRight) {
+				;
+			}
+			else if(dangerLeft){
+				;
+			}
+			else {
+				sDir = Up;
+			}
+		}
+		if (dangerAhead) {
+			if (dangerLeft) {
+				sDir = Up;
+			}
+			else if (dangerRight) {
+				sDir = Down;
+			}
 		}
 		break;
 	}
 	case Right: {
-		if (appleLeft == true) {
-			sDir = Up;
+		if (appleLeft) {
+			if (dangerLeft) {
+				;
+			}
+			else {
+				sDir = Up;
+			}
 		}
-		else if (appleRight == true) {
-			sDir = Down;
+		else if (appleRight) {
+			if (dangerRight) {
+				;
+			}
+			else {
+				sDir = Down;
+			}
 		}
-		else if (appleRight == false && appleLeft == false && appleAhead == false) {
-			sDir = Down;
+		else if (!appleRight && !appleLeft && !appleAhead) {
+			if (dangerRight) {
+				;
+			}
+			else if (dangerLeft) {
+				;
+			}
+			else {
+				sDir = Down;
+			}
+		}
+		if (dangerAhead) {
+			if (dangerLeft) {
+				sDir = Down;
+			}
+			else if (dangerRight) {
+				sDir = Up;
+			}
 		}
 		break;
 	}
 	case Up: {
-		if (appleLeft == true) {
-			sDir = Left;
+		if (appleLeft) {
+			if (dangerLeft) {
+				;
+			}
+			else {
+				sDir = Left;
+			}
 		}
-		else if (appleRight == true) {
-			sDir = Right;
+		else if (appleRight) {
+			if (dangerRight) {
+				;
+			}
+			else {
+				sDir = Right;
+			}
 		}
-		else if (appleRight == false && appleLeft == false && appleAhead == false) {
-			sDir = Right;
+		else if (!appleRight && !appleLeft && !appleAhead) {
+			if (dangerRight) {
+				;
+			}
+			else if (dangerLeft) {
+				;
+			}
+			else {
+				sDir = Right;
+			}
+		}
+		if (dangerAhead) {
+			if (dangerLeft) {
+				sDir = Right;
+			}
+			else if (dangerRight) {
+				sDir = Left;
+			}
 		}
 		break;
 	}
 	case Down: {
-		if (appleLeft == true) {
-			sDir = Right;
+		if (appleLeft) {
+			if (dangerLeft) {
+				;
+			}
+			else {
+				sDir = Right;
+			}
 		}
-		else if (appleRight == true) {
-			sDir = Left;
+		else if (appleRight) {
+			if (dangerRight) {
+				;
+			}
+			else {
+				sDir = Left;
+			}
 		}
-		else if (appleRight == false && appleLeft == false && appleAhead == false) {
-			sDir = Left;
+		else if (!appleRight && !appleLeft && !appleAhead) {
+			if (dangerRight) {
+				;
+			}
+			else if (dangerLeft) {
+				;
+			}
+			else {
+				sDir = Left;
+			}
+		}
+		if (dangerAhead) {
+			if (dangerLeft) {
+				sDir = Left;
+			}
+			else if (dangerRight) {
+				sDir = Right;
+			}
 		}
 		break;
 	}

@@ -10,7 +10,7 @@
 		snake.updateGame();
 		snake.getApplePos();
 		snake.resetvars();
-		Sleep(25);		//delay, set higher for more delay
+		Sleep(50);		//delay, set higher for more delay
 	}
 	return 0;
 }
