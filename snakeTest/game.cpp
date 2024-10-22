@@ -104,6 +104,10 @@ void Game::updateGame() {
 		fruity = rand() % height;
 		snakeTailLength += 5;
 	}
+
+	getWallPos();
+	cout << "DangerRight: " << dangerRight << " DangerLeft: " << dangerLeft << " DangerAhead: " << dangerAhead;
+	resetvars();
 };
 
 void Game::input() {
@@ -267,123 +271,123 @@ void Game::getWallPos() {
 	int posX, posY;
 	int negX, negY;
 
-	posX = headx++;
+	posX = headx--;
 	posY = heady++;
-	negX = headx--;
+	negX = headx++;
 	negY = heady--;
 
 
 	switch (sDir) {		//gets input from sDir
 	case Left:
-		if (posX >= width) {
+		if (posX == width) {
 		}
-		if (negX <= 0) {
+		if (negX == 0) {
 			dangerAhead = true;
 		}
-		if (posY >= height) {
+		if (negY == height) {
 			dangerRight = true;
 		}
-		if (negY <= 0) {
+		if (posY == 0) {
 			dangerLeft = true;
 		}
 
-		for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
+		/*for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
 			if (snakeTailx[i] == negX) {
 				dangerAhead = true;
 			}
 			if (snakeTailx[i] == posX) {
 			}
-			if (snakeTailx[i] == posY) {
-				dangerRight = true;
-			}
-			if (snakeTailx[i] == negY) {
+			if (snakeTaily[i] == posY) {
 				dangerLeft = true;
 			}
-		}
+			if (snakeTaily[i] == negY) {
+				dangerRight = true;
+			}
+		}*/
 
 		break;
 	case Right:
-		if (negX >= width) {
+		if (negX == width) {
 			dangerAhead = true;
 		}
-		if (posX <= 0) {
+		if (posX == 0) {
 		}
-		if (posY >= height) {
-			dangerLeft = true;
-		}
-		if (negY <= 0) {
+		if (negY == height) {
 			dangerRight = true;
 		}
+		if (posY == 0) {
+			dangerLeft = true;
+		}
 
-		for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
+		/*for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
 			if (snakeTailx[i] == negX) {
 				dangerAhead = true;
 			}
 			if (snakeTailx[i] == posX) {
 			}
-			if (snakeTailx[i] == posY) {
+			if (snakeTaily[i] == posY) {
 				dangerLeft = true;
 			}
-			if (snakeTailx[i] == negY) {
+			if (snakeTaily[i] == negY) {
 				dangerRight = true;
 			}
-		}
+		}*/
 
 		break;
 	case Up:
-		if (negX >= width) {
+		if (negX == width) {
 			dangerRight = true;
 		}
-		if (posX <= 0) {
+		if (posX == 0) {
 			dangerLeft = true;
 		}
-		if (posY >= height) {
+		if (negY == height) {
+		}
+		if (posY == 0) {
 			dangerAhead = true;
 		}
-		if (negY <= 0) {
-		}
 
-		for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
+		/*for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
 			if (snakeTailx[i] == negX) {
 				dangerRight = true;
 			}
 			if (snakeTailx[i] == posX) {
 				dangerLeft = true;
 			}
-			if (snakeTailx[i] == posY) {
+			if (snakeTaily[i] == posY) {
 				dangerAhead == true;
 			}
-			if (snakeTailx[i] == negY) {
+			if (snakeTaily[i] == negY) {
 			}
-		}
+		}*/
 
 		break;
 	case Down:
-		if (negX >= width) {
+		if (negX == width) {
 			dangerLeft = true;
 		}
-		if (posX <= 0) {
+		if (posX == 0) {
 			dangerRight = true;
 		}
-		if (posY >= height) {
-		}
-		if (negY <= 0) {
+		if (negY == height) {
 			dangerAhead = true;
 		}
+		if (posY == 0) {
+		}
 
-		for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
+		/*for (int i = 0; i < snakeTailLength; i++) {		//if snake will collide with body, there is danger
 			if (snakeTailx[i] == negX) {
 				dangerLeft = true;
 			}
 			if (snakeTailx[i] == posX) {
 				dangerRight = true;
 			}
-			if (snakeTailx[i] == posY) {
+			if (snakeTaily[i] == posY) {
 			}
-			if (snakeTailx[i] == negY) {
+			if (snakeTaily[i] == negY) {
 				dangerAhead = true;
 			}
-		}
+		}*/
 
 		break;
 	default:
@@ -393,6 +397,8 @@ void Game::getWallPos() {
 
 		break;
 	}
+
+	cout << negX << " " << posX << " " << negY << " " << posY << endl;
 };
 
 void Game::resetvars() {
