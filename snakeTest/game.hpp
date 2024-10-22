@@ -26,7 +26,7 @@ private:
 
 	int score;	//keeps track of player score
 
-	int snakeTailx[100], snakeTaily[100];	//array of coordinates of snake tail
+	int snakeTailx[500], snakeTaily[500];	//array of coordinates of snake tail
 	int snakeTailLength;	//variable that stores length of snake tail
 
 	enum snakeDirection { STOP = 0, Left, Right, Up, Down };	//snake movement directions
