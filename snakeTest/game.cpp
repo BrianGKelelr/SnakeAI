@@ -3,7 +3,7 @@
 void Game::gameStart() {	//used to start game
 	srand (time(0));
 	isGameOver = false;
-	sDir = STOP;			//stops player movement
+	sDir = Up;			//stops player movement
 	headx = width / 2;		//puts snake in middle of game board
 	heady = height / 2;
 	fruitx = rand() % width;	//randomly places fruit
